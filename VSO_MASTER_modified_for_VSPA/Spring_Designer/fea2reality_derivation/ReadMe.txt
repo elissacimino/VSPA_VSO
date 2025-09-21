@@ -1,0 +1,1 @@
+This is a characterization of an old spring and code that predicted the characterization of the current VSO spring (spring used in heavy version)

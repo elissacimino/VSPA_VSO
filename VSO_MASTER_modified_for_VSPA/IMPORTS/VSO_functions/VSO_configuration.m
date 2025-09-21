@@ -1,0 +1,40 @@
+function VSO_configuration()
+    clear
+    % close all
+    
+    %% MAIN
+    %Which Prototype
+    blue = 1;
+    black = 0;
+    Torque_DropFoot = -2.3; %Nm
+    ROM_thresh = deg2rad(25); %(deg) dorsiflexion angle that cam forces will be evaluated at
+    theta_eval_dorsi = 4; %15.5 for a single cam ICORR and 15 for dual cam Biorob
+    theta_eval_plantar = -12; %15.5 for a single cam ICORR and 15 for dual cam Biorob
+    preload = 0.003; %(rad) prevents backlash, but should be small as it also places pressure on the spring support
+    primary_percentage = 0.5; %Normalized primary slider position along stroke [0-1] corresponds to [1-100%]
+    
+    %Geometric Parameters
+    y_center = 0.008;% (meters) Distance between top of simpgurele support (contact point under the spring) and cam roller axis
+    x_center_max = 88; %(mm) least stiff position in spring support stroke
+    x_center_min = 32.5; %(mm) most stiff position in spring support stroke
+    r0 = 0.03529; %0.03529 (meters) distance from ankle center to roller center (actual radius is smaller, but cam generated with math will be offset to account for this)
+    x_off = 0; %(mm) if line from ankle center to center of cam roller is perpendicular to the bottom of the spring then leave this zero (otherwise might need to talk to Nikko)
+    
+    if(black)
+        spring = 'stiff';
+        roller_radius = 0.0095; %(meters) %Cam roller radius of black prototype
+        kdelt_dorsi = 600;
+        kdelt_plantar = 600;
+    end
+    
+    if(blue)
+        spring = 'feather';
+        roller_radius = 0.0085; %(meters) %Cam roller radius
+        % roller_radius = 0.006; %(meters) %FPL412
+        % kdelt_dorsi = 650; %dual cam biorob
+        % kdelt_plantar = 350; %dual cam biorob
+        kdelt_dorsi = 600;
+        kdelt_plantar = 600;
+    end
+    save('inputs/VSO_configuration')
+end

@@ -1,0 +1,22 @@
+"Test Method:","Prosthetic Ankle Compression.msm"
+
+"Sample","Spcmn","Specimen Comment","Target_Compression","Test Speed","Peak Load","Slope"
+"I. D.","No.","","mm","mm/s","N","N/mm"
+
+"Prosthetic Ankle 1-9-18.mss","1","x00 T1 Series Compliance 10 thou","3.000","0.50","897.925","308.4"
+"Prosthetic Ankle 1-9-18.mss","2","x05 T1 Series Compliance 11 thou","3.000","0.50","1059.388","383.2"
+"Prosthetic Ankle 1-9-18.mss","3","x10 T1 Series Compliance 11 thou","3.000","0.50","1234.392","458.5"
+"Prosthetic Ankle 1-9-18.mss","4","x15 T1 Series Compliance 15 thou","3.000","0.50","1541.915","565.2"
+"Prosthetic Ankle 1-9-18.mss","5","x15 T2 Series Compliance 17 thou","3.000","0.50","1552.193","556.1"
+"Prosthetic Ankle 1-9-18.mss","6","x20 T1 Series Compliance 19 thou","3.000","0.50","1868.341","672.7"
+"Prosthetic Ankle 1-9-18.mss","7","x25 T1 Series Compliance 22 thou","3.000","0.50","2260.160","817.6"
+"Prosthetic Ankle 1-9-18.mss","8","x30 T1 Series Compliance 25 thou","3.000","0.50","2691.255","987.2"
+"Prosthetic Ankle 1-9-18.mss","9","x35 T1 Series Compliance 29 thou","3.000","0.50","3258.826","1186.4"
+"Prosthetic Ankle 1-9-18.mss","10","x40 T1 Series Compliance 30 thou","2.800","0.50","3593.906","1446.3"
+"Prosthetic Ankle 1-9-18.mss","11","x45 T1 Series Compliance 31 thou","2.600","0.50","3887.308","1709.2"
+"Prosthetic Ankle 1-9-18.mss","12","x50 T1 Series Compliance 27 thou","2.200","0.50","3917.861","2082.0"
+"Prosthetic Ankle 1-9-18.mss","13","x55 T1 Series Compliance 22 thou","1.800","0.50","3813.942","2683.9"
+"Prosthetic Ankle 1-9-18.mss","14","x60 T1 Series Compliance 19 thou","1.500","0.50","3551.745","3204.6"
+"Prosthetic Ankle 1-9-18.mss","15","x65 T1 Series Compliance 13 thou","1.200","0.50","3337.415","4663.2"
+"Prosthetic Ankle 1-9-18.mss","16","x70 T1 Series Compliance 10 thou","1.000","0.50","3174.104","6508.9"
+

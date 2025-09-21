@@ -1,0 +1,1 @@
+This data is for the characterization of the current titanium spring used in the heavy version of the VSO. The code shown here can be used to characterize any spring data.
