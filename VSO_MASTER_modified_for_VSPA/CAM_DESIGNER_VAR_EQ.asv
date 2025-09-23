@@ -19,7 +19,7 @@ export = input('Export cam profile data? yes or no :','s');
 
 %Which TA curve
 % for foot = {'uniform','trustep','variflex','allpro','lvl','inc','dec'};
-for foot = {'uniform'};
+for foot = {'uniform','linear zero eq', 'linear off zero'};
 %foot = 'lvl';
     % Old VSPA design with single cam profile
     if strcmp(prototype,'VSPA')
@@ -47,7 +47,7 @@ for foot = {'uniform'};
     max_d = 40;
     max_p = 40;
     theta_total = pi/180*(-max_p:0.05:max_d);
-    % equilibrium_angle = 0;   we want different equilibrium angles -- some
+    equilibrium_angle = 0;   %we want different equilibrium angles -- some
     % may be at 0 but not all will be
     m=85.45; %body mass for mass-dependent TA curves
 
@@ -174,15 +174,18 @@ for foot = {'uniform'};
         Mpoints_in = [-25,-25,-17,0,25,60,76,100,100,100]/70*m;
         Mpoints = interp1(thetapoints_in, Mpoints_in, deg2rad([-max_p:1:max_d]),'pchip');
 
+    %% These have been added to test a consistent linear TA relationship, with one having an equilbrium angle at 0 and another at -10deg
     elseif strcmp(foot, 'linear zero eq')
-        thetapoints = deg2rad(-max_p:0.05:max_d);
+        thetapoints = deg2rad(-max_p:max_d);
         stiffness_linear = 15.8 * (180/pi); % Nm/deg to Nm/rad
         Mpoints = stiffness_linear * thetapoints;  % linear relationship from -40 to 40 degrees with stiffness of 15.8 Nm/deg
 
     elseif strcmp(foot, 'linear off zero')
-        thetapoints = deg2rad(-max_p:0.05:max_d+10);
+        thetapoints = deg2rad(-max_p:0.05:max_d+10);   
         Mpoints = stiffness_linear * thetapoints;
-        Mpoints(1:end) = Mpoints(deg2rad(-max_p+10):end);
+        Mpoints = Mpoints((10/0.05)+1:end);      % horizontal shift by 10 degrees (left), making the equilibrium angle at -10deg 
+        eq_index = find(Mpoints==0);             % index where M=0, otherwise known as equilibrium angle
+        equilibrium_angle = rad2deg(thetapoints(eq_index));  % convert equilibrium point from rad to deg
 
     end
 
