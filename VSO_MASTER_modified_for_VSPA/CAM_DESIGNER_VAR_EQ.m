@@ -177,14 +177,16 @@ for foot = {'uniform','linear zero eq', 'linear off zero'};
     %% These have been added to test a consistent linear TA relationship, with one having an equilbrium angle at 0 and another at -10deg
     elseif strcmp(foot, 'linear zero eq')
         thetapoints = deg2rad(-max_p:max_d);
-        stiffness_linear = 15.8 * (180/pi); % Nm/deg to Nm/rad
-        Mpoints = stiffness_linear * thetapoints;  % linear relationship from -40 to 40 degrees with stiffness of 15.8 Nm/deg
+        stiffness_linear = 15.8 * (180/pi);                  % Nm/deg to Nm/rad
+        Mpoints = stiffness_linear * thetapoints;            % linear relationship from -40 to 40 degrees with stiffness of 15.8 Nm/deg
+        fileName = fullfile('inputs', 'TA_linear.mat');
+        save(fileName, 'Mpoints');
 
     elseif strcmp(foot, 'linear off zero')
         thetapoints_offzero = deg2rad(-max_p:max_d+10);   
         Mpoints = stiffness_linear * thetapoints_offzero;
-        Mpoints = Mpoints(11:end);      % horizontal shift by 10 degrees (left), making the equilibrium angle at -10deg 
-        eq_index = find(Mpoints==0);             % index where M=0, otherwise known as equilibrium angle
+        Mpoints = Mpoints(11:end);                           % horizontal shift by 10 degrees (left), making the equilibrium angle at -10deg 
+        eq_index = find(Mpoints==0);                         % index where M=0, otherwise known as equilibrium angle
         equilibrium_angle = rad2deg(thetapoints(eq_index));  % convert equilibrium point from rad to deg
 
     end
