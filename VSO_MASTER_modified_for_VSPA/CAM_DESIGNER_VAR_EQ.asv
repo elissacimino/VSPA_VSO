@@ -221,14 +221,7 @@ for foot = {'uniform','linear zero eq', 'linear off zero'};
         ez_p_i = find(thetapoints==deg2rad(ez_p));  % index of equilibrium zone endpoint in plantarflexion
         ez_z_i = find(thetapoints==deg2rad(ez_z));  % index of equilibrium zone zero point
         ez_d_i = find(thetapoints==deg2rad(ez_d));  % index of equilibrium zone endpoint in dorsiflexion
-        tz_p_i = find(thetapoints==deg2rad(tz_p));  % index of transition zone endpoint in plantarflexion
-        tz_d_i = find(thetapoints==deg2rad(tz_d));  % index of transition zone endpoint in dorsiflexion
-
-        Mpoints(ez_z_i:ez_d_i) = stiffness_eq*thetapoints(ez_z_i:ez_d_i);
-        Mpoints(ez_p_i:ez_z_i) = stiffness_eq*plantar_perc_eq*thetapoints(ez_p_i:ez_z_i);
-        Mpoints(tz_p_i+1:ez_p_i-1) = nan;
-        Mpoints(ez_d_i+1:tz_d_i-1) = nan;
-        M = interp1(thetapoints, Mpoints, theta_total,'pchip');
+        tz_p_i = find(thetapoints==deg2rad(tz_p));  % index of equilibrium zone endpoint in plantarflexion
     end
 
     figure(1); 
