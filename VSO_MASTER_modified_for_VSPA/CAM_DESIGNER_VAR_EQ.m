@@ -185,9 +185,10 @@ for foot = {'uniform','linear zero eq', 'linear off zero'};
 
     elseif strcmp(foot, 'linear off zero')
         stiffness_linear = 15.8 * (180/pi);
-        thetapoints = deg2rad(-max_p:max_d+10);   
+        thetapoints = deg2rad(-max_p:max_d+10); 
         Mpoints = stiffness_linear * thetapoints;
-        Mpoints = Mpoints(11:end);                           % horizontal shift by 10 degrees (left), making the equilibrium angle at -10deg 
+        Mpoints = Mpoints(11:end);     
+        thetapoints = deg2rad(-max_p:1:max_d);                % horizontal shift by 10 degrees (left), making the equilibrium angle at -10deg 
         eq_index = find(Mpoints==0);                         % index where M=0, otherwise known as equilibrium angle
         equilibrium_angle = rad2deg(thetapoints(eq_index));  % convert equilibrium point from rad to deg
 
@@ -229,6 +230,7 @@ for foot = {'uniform','linear zero eq', 'linear off zero'};
         Mpoints(ez_p_i:ez_z_i) = stiffness_eq*plantar_perc_eq*thetapoints(ez_p_i:ez_z_i);
         Mpoints(tz_p_i+1:ez_p_i-1) = nan;
         Mpoints(ez_d_i+1:tz_d_i-1) = nan;
+        thetapoints = 
         M = interp1(thetapoints, Mpoints, theta_total,'pchip');
     end
 
