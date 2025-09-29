@@ -230,7 +230,7 @@ for foot = {'uniform','linear zero eq', 'linear off zero'};
         Mpoints(ez_p_i:ez_z_i) = stiffness_eq*plantar_perc_eq*thetapoints(ez_p_i:ez_z_i);
         Mpoints(tz_p_i+1:ez_p_i-1) = nan;
         Mpoints(ez_d_i+1:tz_d_i-1) = nan;
-        thetapoints = 
+        % thetapoints = 
         M = interp1(thetapoints, Mpoints, theta_total,'pchip');
     end
 
