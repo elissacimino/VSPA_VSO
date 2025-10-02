@@ -188,7 +188,7 @@ for foot = {'uniform','linear zero eq', 'linear off zero'};
         thetapoints = deg2rad(-max_p:max_d+10); 
         Mpoints = stiffness_linear * thetapoints;
         Mpoints = Mpoints(11:end);     
-        thetapoints = deg2rad(-max_p:1:max_d);                % horizontal shift by 10 degrees (left), making the equilibrium angle at -10deg 
+        thetapoints = deg2rad(-max_p:1:max_d);               % horizontal shift by 10 degrees (left), making the equilibrium angle at -10deg 
         eq_index = find(Mpoints==0);                         % index where M=0, otherwise known as equilibrium angle
         equilibrium_angle = rad2deg(thetapoints(eq_index));  % convert equilibrium point from rad to deg
 
