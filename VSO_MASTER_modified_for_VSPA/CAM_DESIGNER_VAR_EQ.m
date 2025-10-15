@@ -4,7 +4,7 @@
 % VSPA Cam Profile Derivation, based on VSO Cam code by Nikko
 % David Lam | davilam@umich.edu | Nikko Van Crey | nikkovc@umich.edu | 847-917-9990
 clear
-close all
+%close all
 %close all hidden
 addpath('TA');addpath('TA/ottobock');addpath('TA/wearable_tech');addpath('TA/old');addpath('IMPORTS');addpath('IMPORTS/VSO_functions');addpath('IMPORTS/data');addpath('inputs')
 addpath('IMPORTS/MATLABFunctions/');
@@ -19,12 +19,11 @@ export = input('Export cam profile data? yes or no :','s');
 
 %Which TA curve
 % for foot = {'uniform','trustep','variflex','allpro','lvl','inc','dec'};
-for foot = {'linear zero eq','linear off zero'};%,'linear zero eq', 'linear off zero'};
+for foot = {'linear zero eq','linear off zero'}; %,'linear zero eq', 'linear off zero'};
 % for 
-feet = {'uniform','linear zero eq', 'linear off zero'};
-%foot = 'lvl';
-for i = 1:numel(feet)
-    foot = feet{i};
+% feet = {'uniform','linear zero eq', 'linear off zero'};
+% %foot = 'lvl';
+% for i = 1:numel(feet)
     disp(foot);
     
     % Old VSPA design with single cam profile
@@ -198,7 +197,7 @@ for i = 1:numel(feet)
         eq_index = find(Mpoints==0);                         % index where M=0, otherwise known as equilibrium angle
         equilibrium_angle = rad2deg(thetapoints(eq_index));  % convert equilibrium point from rad to deg
 
-    
+    end
 
 
     %M = interp1(thetapoints, Mpoints, theta_total,'pchip');
