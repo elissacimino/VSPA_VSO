@@ -19,12 +19,9 @@ export = input('Export cam profile data? yes or no :','s');
 
 %Which TA curve
 % for foot = {'uniform','trustep','variflex','allpro','lvl','inc','dec'};
-<<<<<<< HEAD
 for foot = {'linear zero eq','linear off zero'};%,'linear zero eq', 'linear off zero'};
-=======
 % for 
 feet = {'uniform','linear zero eq', 'linear off zero'};
->>>>>>> origin
 %foot = 'lvl';
 for i = 1:numel(feet)
     foot = feet{i};
@@ -209,12 +206,9 @@ for i = 1:numel(feet)
     %defining TA of equilibrium zone for rotary cam
     % this will use the equilibrium zone centered at 0 (line 54), so don't
     % use this if using a curve with non-zero equilibrium point
-<<<<<<< HEAD
     if strcmp(cam,'rotary') && ~strcmp(foot, 'linear off zero')
         %{
-=======
     elseif strcmp(cam,'rotary') && ~strcmp(foot, 'linear off zero')
->>>>>>> origin
         thetapoints = deg2rad([-max_p:1:max_d]);
         Mpoints(ez_z_i:ez_d_i) = stiffness_eq*thetapoints(ez_z_i:ez_d_i);
         Mpoints(ez_p_i:ez_z_i) = stiffness_eq*plantar_perc_eq*thetapoints(ez_p_i:ez_z_i);
@@ -245,12 +239,10 @@ for i = 1:numel(feet)
         Mpoints(ez_z_i:ez_d_i) = stiffness_eq*thetapoints(ez_z_i:ez_d_i);
         Mpoints(ez_p_i:ez_z_i) = stiffness_eq*plantar_perc_eq*thetapoints(ez_p_i:ez_z_i);
         Mpoints(tz_p_i+1:ez_p_i-1) = nan;
+
         Mpoints(ez_d_i+1:tz_d_i-1) = nan;
-<<<<<<< HEAD
         % thetapoints = 
         %}
-=======
->>>>>>> origin
         M = interp1(thetapoints, Mpoints, theta_total,'pchip');
     end
 
