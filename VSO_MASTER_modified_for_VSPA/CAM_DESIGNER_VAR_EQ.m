@@ -19,8 +19,17 @@ export = input('Export cam profile data? yes or no :','s');
 
 %Which TA curve
 % for foot = {'uniform','trustep','variflex','allpro','lvl','inc','dec'};
+<<<<<<< HEAD
 for foot = {'linear zero eq','linear off zero'};%,'linear zero eq', 'linear off zero'};
+=======
+% for 
+feet = {'uniform','linear zero eq', 'linear off zero'};
+>>>>>>> origin
 %foot = 'lvl';
+for i = 1:numel(feet)
+    foot = feet{i};
+    disp(foot);
+    
     % Old VSPA design with single cam profile
     if strcmp(prototype,'VSPA')
         VSPA_configuration()
@@ -173,7 +182,7 @@ for foot = {'linear zero eq','linear off zero'};%,'linear zero eq', 'linear off 
         thetapoints_in = [-0.65, -0.5, -0.2, 0, 0.125, 0.21, 0.24, 0.4, 0.5, 0.65];
         Mpoints_in = [-25,-25,-17,0,25,60,76,100,100,100]/70*m;
         Mpoints = interp1(thetapoints_in, Mpoints_in, deg2rad([-max_p:1:max_d]),'pchip');
-        
+     
 
     %% These have been added to test a consistent linear TA relationship, with one having an equilbrium angle at 0 and another at -10deg
     elseif strcmp(foot, 'linear zero eq')
@@ -188,11 +197,11 @@ for foot = {'linear zero eq','linear off zero'};%,'linear zero eq', 'linear off 
         thetapoints = deg2rad(-max_p:max_d+10); 
         Mpoints = stiffness_linear * thetapoints;
         Mpoints = Mpoints(11:end);     
-        thetapoints = deg2rad(-max_p:1:max_d);                % horizontal shift by 10 degrees (left), making the equilibrium angle at -10deg 
+        thetapoints = deg2rad(-max_p:1:max_d);               % horizontal shift by 10 degrees (left), making the equilibrium angle at -10deg 
         eq_index = find(Mpoints==0);                         % index where M=0, otherwise known as equilibrium angle
         equilibrium_angle = rad2deg(thetapoints(eq_index));  % convert equilibrium point from rad to deg
 
-    end
+    
 
 
     %M = interp1(thetapoints, Mpoints, theta_total,'pchip');
@@ -200,8 +209,12 @@ for foot = {'linear zero eq','linear off zero'};%,'linear zero eq', 'linear off 
     %defining TA of equilibrium zone for rotary cam
     % this will use the equilibrium zone centered at 0 (line 54), so don't
     % use this if using a curve with non-zero equilibrium point
+<<<<<<< HEAD
     if strcmp(cam,'rotary') && ~strcmp(foot, 'linear off zero')
         %{
+=======
+    elseif strcmp(cam,'rotary') && ~strcmp(foot, 'linear off zero')
+>>>>>>> origin
         thetapoints = deg2rad([-max_p:1:max_d]);
         Mpoints(ez_z_i:ez_d_i) = stiffness_eq*thetapoints(ez_z_i:ez_d_i);
         Mpoints(ez_p_i:ez_z_i) = stiffness_eq*plantar_perc_eq*thetapoints(ez_p_i:ez_z_i);
@@ -233,14 +246,18 @@ for foot = {'linear zero eq','linear off zero'};%,'linear zero eq', 'linear off 
         Mpoints(ez_p_i:ez_z_i) = stiffness_eq*plantar_perc_eq*thetapoints(ez_p_i:ez_z_i);
         Mpoints(tz_p_i+1:ez_p_i-1) = nan;
         Mpoints(ez_d_i+1:tz_d_i-1) = nan;
+<<<<<<< HEAD
         % thetapoints = 
         %}
+=======
+>>>>>>> origin
         M = interp1(thetapoints, Mpoints, theta_total,'pchip');
     end
 
     figure(1); 
     hold on
     plot(theta_total*180/pi,M,'LineWidth',2)
+    drawnow
     exist Mpoints_in;
     if ans == 1
         %plot(thetapoints_in*180/pi,Mpoints_in,'.','Color','k')
