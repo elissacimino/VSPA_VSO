@@ -19,7 +19,8 @@ export = input('Export cam profile data? yes or no :','s');
 
 %Which TA curve
 % for foot = {'uniform','trustep','variflex','allpro','lvl','inc','dec'};
-for foot = {'linear zero eq','linear off zero'}; %,'linear zero eq', 'linear off zero'};
+% for foot = {'linear zero eq','linear -10 degrees', 'linear 5 deg incline'}; %,'linear zero eq', 'linear off zero'};
+for foot = {'linear 5 deg incline'}
 % for 
 % feet = {'uniform','linear zero eq', 'linear off zero'};
 % %foot = 'lvl';
@@ -189,10 +190,46 @@ for foot = {'linear zero eq','linear off zero'}; %,'linear zero eq', 'linear off
         % save(fileName, 'Mpoints');
 
     elseif strcmp(foot, 'linear off zero')
-        stiffness_linear = 15.8 * (180/pi);
-        thetapoints = deg2rad(-max_p:max_d+10); 
+        stiffness_linear = 15.8 * (180/pi);                   % General (from website or Max's paper)
+        thetapoints = deg2rad(-max_p:max_d+10);               % -10 degree equilibrium
         Mpoints = stiffness_linear * thetapoints;
         Mpoints = Mpoints(11:end);     
+        thetapoints = deg2rad(-max_p:1:max_d);               % horizontal shift by 10 degrees (left), making the equilibrium angle at -10deg 
+        eq_index = find(Mpoints==0);                         % index where M=0, otherwise known as equilibrium angle
+        equilibrium_angle = rad2deg(thetapoints(eq_index));  % convert equilibrium point from rad to deg
+
+    elseif strcmp(foot, 'linear 5 deg incline')
+        stiffness_linear = 9.88 * (180/pi);                  % 5 deg incline
+        thetapoints = deg2rad(-max_p:max_d+1);               % -1 degree equilibrium
+        Mpoints = stiffness_linear * thetapoints;
+        Mpoints = Mpoints(2:end);     
+        thetapoints = deg2rad(-max_p:1:max_d);               % horizontal shift by 10 degrees (left), making the equilibrium angle at -10deg 
+        eq_index = find(Mpoints==0);                         % index where M=0, otherwise known as equilibrium angle
+        equilibrium_angle = rad2deg(thetapoints(eq_index));  % convert equilibrium point from rad to deg
+    
+    elseif strcmp(foot, 'linear 5 deg decline')
+        stiffness_linear = 12.44 * (180/pi);                 % 5 deg decline
+        thetapoints = deg2rad(-max_p:max_d+9);               % -9 degree equilibrium
+        Mpoints = stiffness_linear * thetapoints;
+        Mpoints = Mpoints(10:end);     
+        thetapoints = deg2rad(-max_p:1:max_d);               % horizontal shift by 10 degrees (left), making the equilibrium angle at -10deg 
+        eq_index = find(Mpoints==0);                         % index where M=0, otherwise known as equilibrium angle
+        equilibrium_angle = rad2deg(thetapoints(eq_index));  % convert equilibrium point from rad to deg
+
+    elseif strcmp(foot, 'linear stair ascent')
+        stiffness_linear = 9.53 * (180/pi);                   % stair ascent
+        thetapoints = deg2rad(-max_p:max_d-15);               % +15 degree equilibrium
+        Mpoints = stiffness_linear * thetapoints;
+        Mpoints = Mpoints(1:end-16);     
+        thetapoints = deg2rad(-max_p:1:max_d);               % horizontal shift by 10 degrees (left), making the equilibrium angle at -10deg 
+        eq_index = find(Mpoints==0);                         % index where M=0, otherwise known as equilibrium angle
+        equilibrium_angle = rad2deg(thetapoints(eq_index));  % convert equilibrium point from rad to deg
+
+    elseif strcmp(foot, 'linear stair descent')
+        stiffness_linear = 9.02 * (180/pi);                  % stair descent
+        thetapoints = deg2rad(-max_p:max_d+25);              % -25 degree equilibrium
+        Mpoints = stiffness_linear * thetapoints;
+        Mpoints = Mpoints(26:end);     
         thetapoints = deg2rad(-max_p:1:max_d);               % horizontal shift by 10 degrees (left), making the equilibrium angle at -10deg 
         eq_index = find(Mpoints==0);                         % index where M=0, otherwise known as equilibrium angle
         equilibrium_angle = rad2deg(thetapoints(eq_index));  % convert equilibrium point from rad to deg
