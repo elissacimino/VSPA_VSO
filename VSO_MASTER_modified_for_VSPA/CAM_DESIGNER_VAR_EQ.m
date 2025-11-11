@@ -20,7 +20,7 @@ export = input('Export cam profile data? yes or no :','s');
 %Which TA curve
 % for foot = {'uniform','trustep','variflex','allpro','lvl','inc','dec'};
 % for foot = {'linear zero eq','linear -10 degrees', 'linear 5 deg incline'}; %,'linear zero eq', 'linear off zero'};
-for foot = {'linear 5 deg incline'}
+for foot = {'linear 5 deg decline'}
 % for 
 % feet = {'uniform','linear zero eq', 'linear off zero'};
 % %foot = 'lvl';
